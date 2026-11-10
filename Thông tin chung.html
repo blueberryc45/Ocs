@@ -1,0 +1,402 @@
+ <!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ Sơ Vũ Trụ OC - Fandom Wiki</title>
+    <!-- CSS TỰ VIẾT TRỰC TIẾP TRONG FILE DỄ DÙNG VỚI NOTEPAD++ -->
+    <style>
+        /* 1. TẠO MÀU NỀN & FONT CHỮ KIỂU DARK MODE WIKI */
+        :root {
+            --bg-color: #8bd6ff;
+            --card-bg: #ffffff;
+            --accent-color: #4d8bff;
+            --accent-hover: #050939;
+            --text-main: #094083;
+            --text-bright: #4d8bff;
+            --border-color: #8bd6ff; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* 2. THANH ĐIỀU HƯỚNG (NAVBAR) */
+        header {
+            background-color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 8px
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent-hover);
+            text-decoration: none;
+            padding: 15px 0;
+        }
+
+        /* Menu điều hướng */
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            color: var(--text-bright);
+            text-decoration: none;
+            padding: 18px 20px;
+            display: block;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-item:hover > a {
+            background-color: var(--accent-color);
+        }
+
+        /* Sub-menu (Menu xổ xuống cho từng mục World, Lore, OC) */
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            min-width: 200px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            list-style: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .dropdown a {
+            color: var(--text-main);
+            padding: 10px 15px;
+            display: block;
+            text-decoration: none;
+            border-bottom: 1px solid var(--border-color);
+            transition: 0.2s;
+        }
+
+        .dropdown a:hover {
+            background-color: rgba(122, 82, 179, 0.2);
+            color: var(--text-bright);
+            padding-left: 20px;
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        /* 3. BỐ CỤC TRANG CHÍNH (MAIN CONTAINER) */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 320px; /* Cột bài viết bên trái rộng hơn, cột Infobox 320px bên phải */
+            gap: 25px;
+        }
+
+        /* 4. NỘI DUNG BÀI VIẾT (ARTICLE CONTENT) */
+        .article {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .wiki-title {
+            font-size: 2.2rem;
+            color: var(--text-bright);
+            border-bottom: 3px dashed var(--accent-color);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            font-size: 1.5rem;
+            color: var(--accent-hover);
+            border-bottom: 2px dashed var(--accent-color);
+            margin: 25px 0 15px 0;
+            padding-bottom: 1px;
+        }
+
+        .article p {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .badge {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            vertical-align: middle;
+        }
+
+        /* Danh sách liên kết nhanh */
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: left;
+        }
+
+        .card h4 {
+            color: var(--text-bright);
+            margin-bottom: 8px;
+        }
+
+        .card a {
+            color: var(--accent-hover);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* 5. CỘT INFOBOX NHÂN VẬT CHUẨN FANDOM WIKI (SIDEBAR) */
+        .infobox {
+            background-color: var(--card-bg);
+            border: 2px solid var(--accent-color);
+            border-radius: 8px;
+            overflow: hidden;
+            height: fit-content;
+        }
+
+        .infobox-title {
+            background-color: var(--accent-color);
+            color: var(--text-bright);
+            text-align: center;
+            padding: 12px;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .infobox-image {
+            width: 100%;
+            height: 250px;
+            background-color: #21262d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .infobox-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .infobox-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .infobox-table th, .infobox-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .infobox-table th {
+            background-color: rgba(255, 255, 255, 0.04);
+            color: var(--accent-hover);
+            width: 40%;
+        }
+
+        .infobox-table td {
+            color: var(--text-bright);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #8b949e;
+            font-size: 0.85rem;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* RESPONSIVE CHO MÀN HÌNH ĐIỆN THOẠI */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- THANH ĐIỀU HƯỚNG MỤC CHÍNH (NAVBAR) -->
+    <header>
+        <div class="navbar">
+            <a href="#" class="logo">Berry Uni (✿◡‿◡)</a>
+            <ul class="nav-links">
+                <!-- Mục WORLD -->
+                <li class="nav-item">
+                    <a href="#world"> World in4 🫐°☆</a>
+                    <ul class="dropdown">
+                        <li><a href="#lucidia">Thành phố Lucidia</a></li>
+                        <li><a href="#magic">Hệ thống Ma thuật</a></li>
+                        <li><a href="#factions">Các Phe Phái</a></li>
+                    </ul>
+                </li>
+
+                <!-- Mục LORE -->
+                <li class="nav-item">
+                    <a href="#lore">📜 Lore</a>
+                    <ul class="dropdown">
+                        <li><a href="#history">Đại Chiến Cổ Đại</a></li>
+                        <li><a href="#timeline">Dòng Thời Gian</a></li>
+                        <li><a href="#myths">Truyền Thuyết Thần Thoại</a></li>
+                    </ul>
+                </li>
+
+                <!-- Mục OC (Nhân vật) -->
+                <li class="nav-item">
+                    <a href="#oc">⚔️ OC Characters</a>
+                    <ul class="dropdown">
+                        <li><a href="#chariot">Chariot (Nhân vật chính)</a></li>
+                        <li><a href="#luna">Luna (Phù thủy)</a></li>
+                        <li><a href="#kael">Kael (Chiến binh)</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- NỘI DUNG CHÍNH CỦA TRANG -->
+    <div class="container">
+
+        <!-- CỘT BÊN TRÁI: NỘI DUNG BÀI VIẾT VỀ OC/WORLD/LORE -->
+        <main class="article">
+            <h1 class="wiki-title">Chariot - Hiệp Sĩ Bóng Đêm <span class="badge">Main OC</span></h1>
+            
+            <p><strong>Chariot</strong> là nhân vật chính thuộc vũ trụ ma thuật <em>Aetheria</em>. Cậu là một chiến binh mang dòng máu lai giữa Nhân tộc và Dạ Tộc, nổi tiếng với khả năng điều khiển ma thuật bóng tối và kiếm thuật vô song.</p>
+
+            <!-- CÁC MỤC DANH SÁCH KHÁM PHÁ NHANH -->
+            <div class="quick-links-grid">
+                <div class="card">
+                    <h4>🌍 Thế Giới (World)</h4>
+                    <p><a href="#lucidia">Xem về Thành phố Lucidia &rarr;</a></p>
+                </div>
+                <div class="card">
+                    <h4>📜 Cốt Truyện (Lore)</h4>
+                    <p><a href="#history">Đọc sự kiện Đại Chiến &rarr;</a></p>
+                </div>
+                <div class="card">
+                    <h4>👥 Danh Sách OC khác</h4>
+                    <p><a href="#oc">Xem 12 OC liên quan &rarr;</a></p>
+                </div>
+            </div>
+
+            <!-- MỤC I: THÔNG TIN TIỂU SỬ -->
+            <h2 class="section-header" id="biography">1. Tiểu Sử (Biography)</h2>
+            <p>Sinh ra trong thời kỳ hỗn mang của <em>Thành phố Lucidia</em>, Chariot mất gia đình từ nhỏ trong cuộc thanh trừng của Giáo Hội Mặt Trời. Cậu được nhận nuôi bởi một thợ săn tiền thưởng mù và học cách sinh tồn dưới lòng đất.</p>
+            <p>Năm 18 tuổi, Chariot kích hoạt được nguồn sức mạnh bóng tối bị phong ấn trong cơ thể, bắt đầu hành trình tìm kiếm sự thật về nguồn gốc gia tộc mình.</p>
+
+            <!-- MỤC II: SỨC MẠNH VÀ KỸ NĂNG -->
+            <h2 class="section-header" id="powers">2. Sức Mạnh & Kỹ Năng</h2>
+            <ul>
+                <li><strong>Shadow Step:</strong> Dịch chuyển tức thời qua các bóng râm trong bán kính 50m.</li>
+                <li><strong>Eclipse Blade:</strong> Phủ ma thuật bóng tối lên lưỡi kiếm, tăng sức cắt và hủy diệt phòng thủ.</li>
+                <li><strong>Mắt Thần Dạ Tộc:</strong> Nhìn rõ mọi chuyển động trong đêm tối và nhìn thấu ảo ảnh.</li>
+            </ul>
+
+            <!-- MỤC III: MỐI QUAN HỆ (OC CONNECTIONS) -->
+            <h2 class="section-header" id="relations">3. Mối Quan Hệ (Relationships)</h2>
+            <p>• <strong>Luna (OC Phù Thủy):</strong> Bạn đồng hành đáng tin cậy, người duy nhất có thể kiềm chế trạng thái cuồng bạo của Chariot.</p>
+            <p>• <strong>Kael (Đối thủ):</strong> Thủ lĩnh Quân tự vệ Lucidia, vừa là địch vừa là bạn.</p>
+        </main>
+
+        <!-- CỘT BÊN PHẢI: CHARACTER INFOBOX CHUẨN FANDOM WIKI -->
+        <aside class="infobox">
+            <div class="infobox-title">Chariot</div>
+            <div class="infobox-image">
+                <!-- Thay link ảnh OC của bồ vào đây nè -->
+                <img src="https://placehold.co/300x300/1f242d/9d6ee8?text=Anh+OC+Cua+Bo" alt="Ảnh OC Chariot">
+            </div>
+            <table class="infobox-table">
+                <tr>
+                    <th>Tên đầy đủ:</th>
+                    <td>Chariot Shadowfall</td>
+                </tr>
+                <tr>
+                    <th>Chủng tộc:</th>
+                    <td>Bán Dạ Tộc (Half-Demon)</td>
+                </tr>
+                <tr>
+                    <th>Tuổi:</th>
+                    <td>21</td>
+                </tr>
+                <tr>
+                    <th>Giới tính:</th>
+                    <td>Nam</td>
+                </tr>
+                <tr>
+                    <th>Chiều cao:</th>
+                    <td>1m82</td>
+                </tr>
+                <tr>
+                    <th>Phe phái:</th>
+                    <td>Hội Thợ Săn Bóng Đêm</td>
+                </tr>
+                <tr>
+                    <th>Vũ khí:</th>
+                    <td>Song Kiếm Song Sát</td>
+                </tr>
+                <tr>
+                    <th>Trạng thái:</th>
+                    <td>Còn sống</td>
+                </tr>
+            </table>
+        </aside>
+
+    </div>
+
+    <!-- FOOTER CỦA WIKI -->
+    <footer>
+        <p>© 2026 Personal OC & Lore Wiki | Thiết kế đơn giản cho Notepad++</p>
+    </footer>
+
+</body>
+</html>
