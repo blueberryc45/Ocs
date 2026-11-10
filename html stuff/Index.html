@@ -1,0 +1,348 @@
+ <!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ Sơ Vũ Trụ OC - Fandom Wiki</title>
+    <style>
+        /* 1. TẠO MÀU NỀN & FONT CHỮ */
+        :root {
+            --bg-color: #8bd6ff;
+            --card-bg: #ffffff;
+            --accent-color: #4d8bff;
+            --accent-hover: #4d8bff;
+            --text-main: #094083;
+            --text-bright: #4d8bff;
+            --border-color: #8bd6ff; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* 2. THANH ĐIỀU HƯỚNG (NAVBAR) */
+        header {
+            background-color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 8px
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent-hover);
+            text-decoration: none;
+            padding: 15px 0;
+        }
+
+        /* Menu điều hướng */
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            color: var(--text-bright);
+            text-decoration: none;
+            padding: 18px 20px;
+            display: block;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-item:hover > a {
+            background-color: var(--accent-color);
+        }
+
+        /* Sub-menu (Menu xổ xuống cho từng mục World, Lore, OC) */
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            min-width: 200px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            list-style: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .dropdown a {
+            color: var(--text-main);
+            padding: 10px 15px;
+            display: block;
+            text-decoration: none;
+            border-bottom: 1px solid var(--border-color);
+            transition: 0.2s;
+        }
+
+        .dropdown a:hover {
+            background-color: rgba(122, 82, 179, 0.2);
+            color: var(--text-bright);
+            padding-left: 20px;
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        /* 3. BỐ CỤC TRANG CHÍNH (MAIN CONTAINER) */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 320px; /* Cột bài viết bên trái rộng hơn, cột Infobox 320px bên phải */
+            gap: 25px;
+        }
+
+        /* 4. NỘI DUNG BÀI VIẾT (ARTICLE CONTENT) */
+        .article {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .wiki-title {
+            font-size: 2.2rem;
+            color: var(--text-bright);
+            border-bottom: 3px dashed var(--accent-color);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            font-size: 1.5rem;
+            color: var(--accent-hover);
+            border-bottom: 2px dashed var(--accent-color);
+            margin: 25px 0 15px 0;
+            padding-bottom: 1px;
+        }
+
+        .article p {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .badge {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            vertical-align: middle;
+        }
+
+        /* Danh sách liên kết nhanh */
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: left;
+        }
+
+        .card h4 {
+            color: var(--text-bright);
+            margin-bottom: 8px;
+        }
+
+        .card a {
+            color: var(--accent-hover);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* 5. CỘT INFOBOX NHÂN VẬT CHUẨN FANDOM WIKI (SIDEBAR) */
+        .infobox {
+            background-color: var(--card-bg);
+            border: 2px solid var(--accent-color);
+            border-radius: 8px;
+            overflow: hidden;
+            height: fit-content;
+        }
+
+        .infobox-title {
+            background-color: var(--accent-color);
+            color: var(--card-bg);
+            text-align: center;
+            padding: 12px;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .infobox-image {
+            width: 100%;
+            height: 250px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .infobox-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .infobox-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .infobox-table th, .infobox-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .infobox-table th {
+            background-color: rgba(255, 255, 255, 0.04);
+            color: var(--accent-hover);
+            width: 40%;
+        }
+
+        .infobox-table td {
+            color: var(--text-bright);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #8b949e;
+            font-size: 0.85rem;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* RESPONSIVE CHO MÀN HÌNH ĐIỆN THOẠI */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+            }
+        }
+</style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="index.html" class="logo">Berry Uni°☆</a>
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="#world"> World in4 </a>
+                    <ul class="dropdown">
+                        <li><a href="TGS.html">The Great System</a></li>
+                        <li><a href="HTCN.html">Hệ thống công nghệ</a></li>
+                        <li><a href="Novella.html">Về hành tinh Novella</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#lore">Lore</a>
+                    <ul class="dropdown">
+                        <li><a href="Thepast.html">Tân thế - Initiation</a></li>
+                        <li><a href="Present.html">Hiện thế - Present</a></li>
+						<li><a href="A-H.html">Androids - Con người</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#oc">OCs</a>
+                    <ul class="dropdown">
+                        <li><a href="TGS_MEM.html">Thuộc hội TGS</a></li>
+						<li><a href="others.html">Khác</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <main class="article">
+            <h1 class="wiki-title"> Information <span class="badge">Thông tin sơ sơ</span></h1>
+            <p> — Một nơi mà công nghệ vô cùng phát triển, con người trên hành tinh này đã sớm tìm ra 1 loại nhiên liệu được gọi là Decolium, sau nhiều năm nghiên cứu và tinh chỉnh, loại nguyên liệu ấy đã được dùng để chế tạo ra các máy móc có hình dạng giống con người và những loại máy đó được gọi là “Androids”. </p>
+            <div class="quick-links-grid">
+                <div class="card">
+                    <h4> World in4 </h4>
+                    <p><a href="TGS.html"> Thông tin về TGS ▷ </a></p>
+					<p><a href="HTCN.html"> Hệ thống công nghệ ▷ </a></p>
+					<p><a href="Novella.html">Về hành tinh Novella ▷ </a></p>
+                </div>
+                <div class="card">
+                    <h4> Lore </h4>
+                    <p><a href="Thepast.html"> Tân thế ▷ </a></p>
+				    <p><a href="Present.html"> Hiện thế ▷ </a></p>
+					<p><a href="A-H.html"> Androids - Con người ▷ </a></p>
+                </div>
+                <div class="card">
+                    <h4> Các Ocs </h4>
+                    <p><a href="TGS_MEM.html"> Thuộc hồi TGS ▷ </a></p>
+					<p><a href="others.html"> Khác ▷ </a></p>
+                </div>
+            </div>
+            <h2 class="section-header" id="Scenerios">1. Bối cảnh </h2>
+            <p> – Novella được lấy bối cánh ở một hành tinh khác, mang chất sci-fi và cyperpunk, tương tự trái đất nhưng lại phát triển hơn về mặt công nghệ. nhờ có 1 loại nhiên liệu tên là <strong>Decolium</strong>. Hầu như các công nghệ trên hành tinh Novella đều vận hành nhờ vào Decolium hoặc nhờ vào năng lượng tái tạo được như gió, ánh sáng mặt trời hoặc nước.</p>
+			<p> – Nguồn gốc của Decolium là đến từ chính lõi của hành Novella, trên mảnh đấy màu mỡ này ở những vùng nhất định sẽ xuất hiện một vài vết nức, gọi là hiện tượng <strong>tràn Deco (Deco Overflown)</strong> con người sẽ dùng các thiết bị của họ mà khai thác - Rõ hơn ở vần Thông tin về Novella </p>
+            <h2 class="section-header" id="TheTGS">2. Hệ Thống TGS</h2>
+            <p> – Do là thêm nhiều thiết bị máy móc như thế nên cả hành tinh phải có ai đó đứng ra và quản lý tất cả, nếu không thì sẽ rất hỗn loạn. Hiện nay đang có 8 cỗ máy khổng lồ gọi là <strong>The Great Systems – TGS</strong> nằm đều trên vĩ tuyến của hành tinh. Nó vô cùng to lớn, chọc trời, cao hơn cả 1 tòa thành, nhiệm vụ của mỗi cỗ máy là khác nhau nhưng chúng có chung 1 mục đích là giúp hành tinh này vận hành, không xảy ra xung đột.
+            </p>
+			<p> – Bên trong mỗi cỗ máy sẽ có 1 tổ chức nắm quyền, tổ chức đó sẽ nắm phần vận hành và bảo trì cỗ máy, nhằm đảm bảo nó luôn hoạt động và không bị hỏng hóc nặng nề.</p>
+        </main>
+        <aside class="infobox">
+            <div class="infobox-title">Placeholder</div>
+            <div class="infobox-image">
+                <img src="Placeholder.jpg" alt="placeholder">
+            </div>
+			 <div class="infobox-title">Placeholder</div>
+            <div class="infobox-image">
+                <img src="Placeholder.jpg" alt="placeholder">
+            </div>
+			 <div class="infobox-title">Placeholder</div>
+            <div class="infobox-image">
+                <img src="Placeholder.jpg" alt="placeholder">
+            </div>
+        </aside>
+    </div>
+    <footer>
+        <p>Personal OC & Lore Wiki | by Berrybeobeo/SCVQ/Nâu.</p>
+    </footer>
+
+</body>
+</html>
