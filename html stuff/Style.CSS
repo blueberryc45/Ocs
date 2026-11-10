@@ -1,0 +1,14 @@
+<style>
+	:root {
+		--bg-color: #8bd6ff;
+		--card-bg: #ffffff;
+        --accent-color: #4d8bff;
+        --accent-hover: #050939;
+        --text-main: #094083;
+        --text-bright: #4d8bff;
+        --border-color: #8bd6ff; }
+	* {
+		box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

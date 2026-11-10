@@ -1,0 +1,376 @@
+ <!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ Sơ Vũ Trụ OC - Fandom Wiki</title>
+    <style>
+        /* 1. TẠO MÀU NỀN & FONT CHỮ */
+        :root {
+            --bg-color: #8bd6ff;
+            --card-bg: #ffffff;
+            --accent-color: #4d8bff;
+            --accent-hover: #4d8bff;
+            --text-main: #094083;
+            --text-bright: #4d8bff;
+            --border-color: #8bd6ff; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Times New Roman', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* 2. THANH ĐIỀU HƯỚNG (NAVBAR) */
+        header {
+            background-color: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 8px
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent-hover);
+            text-decoration: none;
+            padding: 15px 0;
+        }
+
+        /* Menu điều hướng */
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-item > a {
+            color: var(--text-bright);
+            text-decoration: none;
+            padding: 18px 20px;
+            display: block;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-item:hover > a {
+            background-color: var(--accent-color);
+        }
+
+        /* Sub-menu (Menu xổ xuống cho từng mục World, Lore, OC) */
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg);
+            min-width: 200px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            list-style: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .dropdown a {
+            color: var(--text-main);
+            padding: 10px 15px;
+            display: block;
+            text-decoration: none;
+            border-bottom: 1px solid var(--border-color);
+            transition: 0.2s;
+        }
+
+        .dropdown a:hover {
+            background-color: rgba(122, 82, 179, 0.2);
+            color: var(--text-bright);
+            padding-left: 20px;
+        }
+
+        .nav-item:hover .dropdown {
+            display: block;
+        }
+
+        /* 3. BỐ CỤC TRANG CHÍNH (MAIN CONTAINER) */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 320px; /* Cột bài viết bên trái rộng hơn, cột Infobox 320px bên phải */
+            gap: 25px;
+        }
+
+        /* 4. NỘI DUNG BÀI VIẾT (ARTICLE CONTENT) */
+        .article {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .wiki-title {
+            font-size: 2.2rem;
+            color: var(--text-bright);
+            border-bottom: 3px dashed var(--accent-color);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            font-size: 1.5rem;
+            color: var(--accent-hover);
+            border-bottom: 2px dashed var(--accent-color);
+            margin: 25px 0 15px 0;
+            padding-bottom: 1px;
+        }
+
+        .article p {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .badge {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            vertical-align: middle;
+        }
+
+        /* Danh sách liên kết nhanh */
+        .quick-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: left;
+        }
+
+        .card h4 {
+            color: var(--text-bright);
+            margin-bottom: 8px;
+        }
+
+        .card a {
+            color: var(--accent-hover);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* 5. CỘT INFOBOX NHÂN VẬT CHUẨN FANDOM WIKI (SIDEBAR) */
+        .infobox {
+            background-color: var(--card-bg);
+            border: 2px solid var(--accent-color);
+            border-radius: 8px;
+            overflow: hidden;
+            height: fit-content;
+        }
+
+        .infobox-title {
+            background-color: var(--accent-color);
+            color: var(--card-bg);
+            text-align: center;
+            padding: 12px;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .infobox-image {
+            width: 100%;
+            height: 250px;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .infobox-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .infobox-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .infobox-table th, .infobox-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .infobox-table th {
+            background-color: rgba(255, 255, 255, 0.04);
+            color: var(--accent-hover);
+            width: 40%;
+        }
+
+        .infobox-table td {
+            color: var(--text-bright);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #8b949e;
+            font-size: 0.85rem;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* RESPONSIVE CHO MÀN HÌNH ĐIỆN THOẠI */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+            }
+        }
+</style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="Thông tin chung.html" class="logo">Berry Uni°☆</a>
+            <ul class="nav-links">
+                <li class="nav-item">
+                    <a href="#world"> World in4 </a>
+                    <ul class="dropdown">
+                        <li><a href="TGS.html">The Great System</a></li>
+                        <li><a href="HTCN.html">Hệ thống công nghệ</a></li>
+                        <li><a href="Novella.html">Về hành tinh Novella</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#lore">Lore</a>
+                    <ul class="dropdown">
+                        <li><a href="Thepast.html">Tân thế - Initiation</a></li>
+                        <li><a href="Present.html">Hiện thế - Present</a></li>
+						<li><a href="A-H.html">Androids - Con người</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#oc">OCs</a>
+                    <ul class="dropdown">
+                        <li><a href="TGS_MEM.html">Thuộc hội TGS</a></li>
+						<li><a href="others.html">Khác</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </header>
+	<div class="container">
+		<main class="article">
+			<h1 class="wiki-title"> The Great System <span class="badge">TGS</span></h1>
+			<p> – Mỗi tổ chức đại diện cho từng system đều có quyền xây dựng lên những công trình nhân bản của system gốc, những công trình ấy sẽ nhỏ hơn bản gốc rất rất nhiều, và những công trình ấy sẽ phục vụ cho từng mục đích riêng của mỗi system, những công trình sẽ được đặt tên theo từng system theo mẫu sau:
+			<div class="card">
+                    <h4 style="text-align: center;"> (Tên rút gọn của system ấy, VD : SY01, SY02)–(Chữ cái in hoa, VD: A, B, C) </h4>  
+                </div>
+			<h2 class="section-header" id="Edict">1. The Edict (SY01)</h2>
+			<p> – Đại diện cho luật pháp, là nơi diễn ra những phiên tòa phân xử, đồng thời nơi này lưu trữ rất nhiều thứ liên quan tới pháp luật, họ đảm bảo giám sát anh ninh mọi khu vực trên Novella. </p>
+			<p> – Các <strong>SY01–A</strong> sẽ có nhiệm vụ là nơi để các người dân Novella báo cáo những sự việc họ quang ngại lên cho tòa chính, tại <strong>SY01–A</strong> sẽ có một vài binh lính là thành viên của tòa chính được phân công ở đó để giải quyết những chuyện nhỏ.</p>
+
+			<h2 class="section-header" id="Sanctum">2. The Sanctum (SY02)</h2>
+			<p> – Đại diện cho tôn giáo và đức tin trên toàn Novella, tạo ra để giải quyết những vấn đề liên quan tới nhân quyền và đảm bảo các tôn giáo tồn tại trên Novella không phải dị giáo nhằm bảo vệ người dân khỏi những đức tin mù quáng, xấu xa.</p>
+			<p> – SY02 hiện đang có 3 công trình được phê duyệt tương đương với 3 tôn giáo được phê duyệt: <strong>Endless Horizon</strong> <em>( tôn thờ vị thần tên là Spatium)</em> <strong>Rays of humanity</strong> <em>( họ tôn thờ thực thể tên Lux)</em>, <strong>Self Rescue</strong> <em>(những người này không tôn thờ bất kỳ ai)</em>.</p>
+
+			<h2 class="section-header" id="Heritage">3. The Heritage (SY03)</h2>
+			<p> – Là nơi lưu trữ những di sản văn hóa đặc biệt trên toàn Novella, đóng vai trò như 1 viện bảo tàng, giúp duy trì và bảo tồn những vật quý qua từng thời kỳ. </P>
+			<p> – Những bảo tàng rải rác trên toàn Novella sẽ được gọi là <strong>SY03–A</strong> chúng là những công trình do tổ chức trong The Heritage dựng lên, những đồ vật trưng trong đấy là những bản sau <strong>GẦN</strong> hoàn hảo của bản gốc, công nghệ của họ chưa phát minh ra được các sao chép hoàn hảo 1 thứ gì đó.</p>
+	
+			<h2 class="section-header" id="Genesis">4. The Genesis (SY04)</h2>
+			<p> – Là nơi nghiên cứu và cất giữ những công nghệ tiên tiến nhất hiện nay, The Genesis hiện đang hợp tác với The Heritage tạo ra một hiệp hội lớn, trên Novella ở đâu cũng có chi nhánh là <strong>“Creation & Source (C.S)”.</strong></p>
+			<p> – Hiệp hội này được tạo ra với mục đích nghiên cứu các loại máy móc đã bị chôn vùi hoặc những loại công nghệ mà khi xưa họ từng sử dụng nhằm việc bảo tồn và qua đó sáng tạo, trao dồi cho nền công nghệ hiện nay. <em>(Hầu như The Genesis có mối quan hệ hợp tác với tất cả system còn lại)</em>.<p>
+
+			<h2 class="section-header" id="Vitalis">5. The Vitalis (SY05)</h2>
+			<p> – Là nơi mà các công nghệ chữa trị được đề cao, họ nghiên cứu về các loại bệnh, trụ sở chính là nơi để nghiên cứu về các loại virus với android và dịch bệnh với người.</p>
+			<p> – The Vitalis cũng có mối quan hệ khá thân thiện với The Genesis vì các máy móc và đồ dùng y tế trong này đều là nhờ có The Genesis cung cấp, hỗ trợ cho mà có. Ngoài ra The Vitalis có rất nhiều chi nhánh <strong>(SY05 – A)</Strong> vòng quanh Novella để đảm bảo sức khỏe và an toàn của người dân trên vùng đất này.</P>
+
+			<h2 class="section-header" id="Meridian">6. The Meridian (SY06)</h2>
+			<p> – Là nơi quản lý các thông tin về dòng chảy tiền bạc trên Novella, mọi loại thế mà các doanh nghiệp cần nộp sẽ nộp thông qua các công trình nhân bản <strong>(SY06 – A)</strong> rồi số tiền thuế đó sẽ được chạy về tòa chính.</p>
+			<P> – Tòa chính sẽ có nhiệm vụ kiểm tra và phân tích nguồn tiền của doanh nghiệp rồi sao đó sẽ sao kê rõ ràng theo luật pháp của SY01 đặt ra <em>(Nơi này thường được người dân gọi là Accountant)</em>.</p>
+	
+			<h2 class="section-header" id="Chronicle">7. The Chronicle (SY07)</h2>
+			<p> – Là nơi ghi chép lại lịch sử của Novella, The Chronicle có mối quan hệ hợp tác với The Heritage</P>
+			<p> – Các thông tin mà trong bảo tàng The Heritage có được cũng 1 phần nào nhờ The Chronicle cung cấp ngược lại The Heritage sẽ hỗ trợ nhân lực cho The Chronicle để ghi chép lại những sự kiện quan trọng trên Novella.</p>
+
+			<h2 class="section-header" id="Luminary">8. The Luminary (SY08)</h2>
+			<p> – Là kho tàng kiến thức của Novella, tất cả loại kiến thức đều được lưu trữ ở đây. Toàn bộ hệ thống trường học trên Novella đều là do The Luminary chủ trương, hợp tác cùng các system khác xây dựng lên.</P>
+			<p> – Khác các system khác, những công trình mà The Luminary xây nên sẽ đặt tên theo khu vực chứ không theo công thức đặt tên có sẵn.</p>
+</main>
+<aside class="infobox">
+            <div class="infobox-title">SY01</div>
+            <div class="infobox-image">
+                <img src="Placeholder.jpg" alt="Ảnh System">
+            </div>
+			<div class="infobox-title">SY02</div>
+            <div class="infobox-image">
+                <img src="Placeholder.jpg" alt="Ảnh System">
+            </div>
+			<div class="infobox-title">SY03</div>
+			 <div class="infobox-image">
+                <img src="Placeholder.jpg" alt="Ảnh System">
+            </div>
+			<div class="infobox-title">SY04</div>
+			 <div class="infobox-image">
+                <img src="Placeholder.jpg" alt="Ảnh System">
+            </div>
+			<div class="infobox-title">SY05</div>
+			 <div class="infobox-image">
+                <img src="Placeholder.jpg" alt="Ảnh System">
+            </div>
+			<div class="infobox-title">SY06</div>
+			 <div class="infobox-image">
+                <img src="Placeholder.jpg" alt="Ảnh System">
+            </div>
+			<div class="infobox-title">SY07</div>
+			 <div class="infobox-image">
+                <img src="Placeholder.jpg" alt="Ảnh System">
+            </div>
+			<div class="infobox-title">SY08</div>
+			 <div class="infobox-image">
+                <img src="Placeholder.jpg" alt="Ảnh System">
+            </div>
+        </aside>
+    </div>
+    <footer>
+        <p>Personal OC & Lore Wiki | by Berrybeobeo/SCVQ/Nâu.</p>
+    </footer>
+
+</body>
+</html>
